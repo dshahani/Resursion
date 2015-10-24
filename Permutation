@@ -1,0 +1,38 @@
+package recursion;
+
+public class FindPermutation
+{
+
+	public static void main(String[] arg)
+	{
+		calcPer("abc".toCharArray(), 0, 2);
+	}
+
+	public static void calcPer(char[] charArr, int start, int end)
+	{
+		if (start == end)
+		{
+			for (char c : charArr)
+				System.out.print(c);
+			System.out.println("");
+		} else
+		{
+			for (int i = start; i <= end; i++)
+			{
+				swap(charArr, start, i);
+				calcPer(charArr, start + 1, end);
+				swap(charArr, start, i); // backtrack
+			}
+		}
+
+	}
+
+	public static void swap(char[] arr, int l, int h)
+	{
+		char temp;
+		temp = arr[l];
+		arr[l] = arr[h];
+		arr[h] = temp;
+	}
+
+}
